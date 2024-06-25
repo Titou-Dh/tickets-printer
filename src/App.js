@@ -32,7 +32,7 @@ const App = () => {
       },
     });
 
-    const ticketsPerPage = 3;
+    const ticketsPerPage = 4;
     const pages = [];
 
     for (let i = 0; i < tickets.length; i += ticketsPerPage) {
