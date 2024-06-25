@@ -25,7 +25,7 @@ const App = () => {
       },
       ticket: {
         width: '100%',
-        height: '30%',
+        height: '23%',
         border: '1px solid black',
         padding: 10,
         margin: 'auto',
