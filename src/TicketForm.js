@@ -1,69 +1,38 @@
 import React, { useState } from 'react';
-import PrintTickets from './PrintTickets';
 
-const TicketForm = () => {
-  const [startNumber, setStartNumber] = useState('');
-  const [finishNumber, setFinishNumber] = useState('');
-  const [tickets, setTickets] = useState([]);
+const TicketForm = ({ onGenerate }) => {
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
 
-  const handleGenerateTickets = () => {
-    const start = parseInt(startNumber, 10);
-    const finish = parseInt(finishNumber, 10);
-
-    if (isNaN(start) || isNaN(finish) || start > finish) {
-      alert('Please enter valid start and finish numbers');
-      return;
-    }
-
-    const generatedTickets = [];
-    for (let i = start; i <= finish; i++) {
-      generatedTickets.push({
-        ticketNumber: i,
-        name: "اسم الطالب",
-        class: "القسم",
-        fee: "المعلوم",
-        date: new Date().toLocaleDateString('ar-EG'),
-      });
-    }
-
-    setTickets(generatedTickets);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onGenerate(start, end);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="startNumber">
-          Start Number:
-        </label>
+    <form onSubmit={handleSubmit} className="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-4">
+      <label>
+        Start Serial Number:
         <input
           type="number"
-          id="startNumber"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={startNumber}
-          onChange={(e) => setStartNumber(e.target.value)}
+          value={start}
+          onChange={(e) => setStart(e.target.value)}
+          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="finishNumber">
-          Finish Number:
-        </label>
+      </label>
+      <label>
+        End Serial Number:
         <input
           type="number"
-          id="finishNumber"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={finishNumber}
-          onChange={(e) => setFinishNumber(e.target.value)}
+          value={end}
+          onChange={(e) => setEnd(e.target.value)}
+          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
-      </div>
-      <button
-        onClick={handleGenerateTickets}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
+      </label>
+      <button type="submit" className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
         Generate Tickets
       </button>
-
-      {tickets.length > 0 && <PrintTickets tickets={tickets} />}
-    </div>
+    </form>
   );
 };
 
