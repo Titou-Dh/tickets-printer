@@ -22,8 +22,8 @@ const App = () => {
     ticketContainer: {
       position: 'relative', // Use relative positioning
       width: '100%',
-      height: '180px',
-      marginBottom: 10,
+      height: '200px',
+      marginBottom: 3,
     },
     backgroundImage: {
       position: 'absolute',
