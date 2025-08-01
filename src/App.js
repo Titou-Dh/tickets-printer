@@ -97,13 +97,13 @@ const App = () => {
         </PDFDownloadLink>
       )}
 
-      {
+      {/* {
         tickets.length > 0 && (
           <div className="mt-6">
             <TicketPDF tickets={tickets} />
           </div>
         )
-      }
+      } */}
 
 
     </div>
